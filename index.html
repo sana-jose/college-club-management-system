@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Neutral background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #333; /* Darker text color */
+            font-weight: 600;
+        }
+
+        .club-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .club-box {
+            background-color: #4CAF50;
+            color: white;
+            padding: 30px;
+            font-size: 1.6rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .club-box:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .club-box:active {
+            background-color: #388e3c;
+        }
+
+        .club-box span {
+            display: block;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 10px;
+        }
+
+        /* Logout button on the top-right */
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f44336;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935;
+        }
+
+        /* Add Club, Leaderboard, and View Unaffiliated Participants Buttons */
+        .add-club-btn, .leaderboard-btn, .view-unaffiliated-btn {
+            background-color: #008CBA;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .add-club-btn:hover, .leaderboard-btn:hover, .view-unaffiliated-btn:hover {
+            background-color: #007bb5;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Logout Button -->
+    <button class="logout-btn" onclick="window.location.href='/logout';">Logout</button>
+
+    <div class="container">
+        <!-- Add Club Button -->
+        <button class="add-club-btn" onclick="window.location.href='/add-club';">Add a Club</button>
+        
+        <!-- Leaderboard Button -->
+        <button class="leaderboard-btn" onclick="window.location.href='/leaderboard';">View Leaderboard</button>
+
+        <!-- View Unaffiliated Participants Button -->
+        <button class="view-unaffiliated-btn" onclick="window.location.href='/view_unaffiliated_participants';">View Unaffiliated Participants</button>
+        <button class="view-unaffiliated-btn" onclick="window.location.href='/view_external_participants';">
+            View External Event Participants
+        </button>
+
+        <h1>Select Your Club</h1>
+        <div class="club-boxes">
+            {% for club in clubnames %}
+                <div class="club-box" onclick="window.location.href='/club/{{ club }}';">
+                    <span>{{ club }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

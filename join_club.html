@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join a Club</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // Fetch teams based on the selected club using AJAX
+        async function fetchTeams() {
+            const clubId = document.getElementById("club").value;
+
+            // Reset team dropdown if no club is selected
+            if (clubId === "") {
+                document.getElementById("team").innerHTML = '<option value="">-- Select a Team --</option>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/get_teams/${clubId}`);
+                const teams = await response.json();
+
+                if (Array.isArray(teams) && teams.length > 0) {
+                    const teamSelect = document.getElementById("team");
+                    teamSelect.innerHTML = '<option value="">-- Select a Team --</option>';
+                    teams.forEach(team => {
+                        const option = document.createElement("option");
+                        option.value = team.team_id;
+                        option.textContent = team.name;
+                        teamSelect.appendChild(option);
+                    });
+                } else {
+                    document.getElementById("team").innerHTML = '<option value="">No teams available</option>';
+                }
+            } catch (error) {
+                console.error("Error fetching teams:", error);
+                alert("Failed to load teams. Please try again later.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Title -->
+        <h2>Join a Club</h2>
+
+        <!-- Success/Error Flash Message -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Join Club Form -->
+        <form method="POST" action="/add-club">
+            <!-- Club Selection Dropdown -->
+            <div class="form-group">
+                <label for="club">Select Club:</label>
+                <select id="club" name="club_id" onchange="fetchTeams()" required>
+                    <option value="">-- Select a Club --</option>
+                    {% for club in clubs %}
+                        <option value="{{ club[0] }}">{{ club[1] }}</option> <!-- club[0] is club_id, club[1] is clubname -->
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Team Selection Dropdown -->
+            <div class="form-group">
+                <label for="team">Select Team:</label>
+                <select id="team" name="team_id" required>
+                    <option value="">-- Select a Team --</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Join Team</button>
+        </form>
+    </div>
+</body>
+</html>

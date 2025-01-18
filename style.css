@@ -1,0 +1,104 @@
+/* Updated Header Style */
+.header {
+    padding: 15px 30px;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(90deg, #3a6186, #89253e);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Updated Border Style */
+.border {
+    padding: 50px 30px;
+    width: 450px;
+    height: auto;
+    border: 2px solid #3a6186;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff, #dce3e9);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin: auto;
+}
+
+/* Updated Button Style */
+.btn {
+    padding: 15px 50px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #ee0979, #ff6a00);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Updated Textbox Style */
+.textbox {
+    padding: 15px 20px;
+    width: 100%;
+    background-color: #f7f8fc;
+    border: 2px solid #3a6186;
+    color: #333333;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    outline: none;
+    margin-bottom: 20px;
+    box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.1), inset -3px -3px 8px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.textbox:focus {
+    border-color: #ee0979;
+    box-shadow: 0 0 10px rgba(238, 9, 121, 0.5);
+}
+
+/* Updated Placeholder Style */
+::placeholder {
+    color: #aaa;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+/* Updated Word Style */
+.word {
+    color: #3a6186;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Updated Bottom Link Style */
+.bottom {
+    color: #3a6186;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.bottom:hover {
+    color: #ff6a00;
+}

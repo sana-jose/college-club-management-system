@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            height: 100vh;
+        }
+        .left-sidebar {
+            border-right: 1px solid #ccc;
+        }
+        .right-sidebar {
+            border-left: 1px solid #ccc;
+        }
+        .content {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .notice-card, .project-card, .event-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .notice-card p, .project-card p, .event-card p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+        .notice-date, .project-date, .event-date {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .add-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+
+        .view-members-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .view-members-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Sidebar -->
+    <div class="sidebar left-sidebar">
+        <h2>Ongoing Projects</h2>
+
+        {% if projects %}
+            {% for project in projects %}
+                <div class="project-card">
+                    <p>{{ project[0] }}</p>
+                    <div class="project-date">Start Date: {{ project[1] }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No projects available for this club.</p>
+        {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Notices for {{ club_name }}</h1>
+        <a href="/add_notice" class="add-button">Add Notice</a>
+
+        {% if notices %}
+            {% for notice in notices %}
+                <div class="notice-card">
+                    <p>{{ notice[0] }}</p>
+                    <div class="notice-date">Date: {{ notice[1] }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No notices available for this club.</p>
+        {% endif %}
+        
+        <!-- View Members Button (Only for President) -->
+        
+        <a href="/view_members" class="view-members-btn">Members With No project</a>
+        
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar right-sidebar">
+        <h2>Upcoming Events</h2>
+        <a href="/add_event" class="add-button">Add Event</a>
+
+        {% if events %}
+            {% for event in events %}
+                <div class="event-card">
+                    <p>{{ event[0] }}</p>
+                    <div class="event-date">Date: {{ event[1] }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No events available for this club.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
