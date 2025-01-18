@@ -1,1 +1,1 @@
-# college-management-system
+# college-club-management-system
